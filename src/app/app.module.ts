@@ -14,6 +14,7 @@ import { UserComponent } from './users/user/user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { ServerResolver } from './server-resolver.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { AuthGuard } from './auth-guard.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ServersService, AuthService, AuthGuard],
+  providers: [ServersService, AuthService, AuthGuard, ServerResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

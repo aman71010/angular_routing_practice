@@ -9,6 +9,7 @@ import { ServerComponent } from "./servers/server/server.component";
 import { EditServerComponent } from "./servers/edit-server/edit-server.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { AuthGuard } from "./auth-guard.service";
+import { ServerResolver } from "./server-resolver.service";
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,10 +17,10 @@ const appRoutes: Routes = [
         {path: ':id/:name', component: UserComponent}
     ]},
     {path: 'servers', canActivateChild: [AuthGuard], component: ServersComponent, children: [
-        {path: ':id', component: ServerComponent},
+        {path: ':id', component: ServerComponent, resolve: {server: ServerResolver}},
         {path: ':id/edit', component: EditServerComponent}
     ]},
-    {path: 'not-found', component: NotFoundComponent},
+    {path: 'not-found', component: NotFoundComponent, data: {message: 'Not Found!'}},
     {path: '**', redirectTo: 'not-found'}
 ]
 
